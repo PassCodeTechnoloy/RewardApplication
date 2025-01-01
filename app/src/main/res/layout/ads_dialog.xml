@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:padding="@dimen/_10sdp"
+    android:background="@drawable/coin_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/manrope"
+        android:text="You don't have enough coins to play this contest.click on video ads to get 100 reward coins."
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/coin_bg"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/manrope"
+                android:text="CANCLE"
+                android:padding="@dimen/_10sdp"
+                android:textStyle="bold"
+                android:textColor="@color/red_color"
+                android:textSize="@dimen/_13sdp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/coin_bg"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:backgroundTint="@color/red_color"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/manrope"
+                android:text="WATCH ADS"
+                android:padding="@dimen/_10sdp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

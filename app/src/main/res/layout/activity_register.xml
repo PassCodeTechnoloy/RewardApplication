@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bgcolor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/toolbar_comonlayout" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2">
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:gravity="center_horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/coin_bg"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        android:padding="@dimen/_10sdp"
+                        android:fontFamily="@font/popins"
+                        android:textColorHint="@color/white"
+                        android:background="@drawable/coin_bg"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/black"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        android:padding="@dimen/_10sdp"
+                        android:fontFamily="@font/popins"
+                        android:textColorHint="@color/white"
+                        android:background="@drawable/coin_bg"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:backgroundTint="@color/black"/>
+
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:padding="@dimen/_10sdp"
+                        android:fontFamily="@font/popins"
+                        android:textColorHint="@color/white"
+                        android:background="@drawable/coin_bg"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:backgroundTint="@color/black"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Confirm Password"
+                        android:padding="@dimen/_10sdp"
+                        android:fontFamily="@font/popins"
+                        android:textColorHint="@color/white"
+                        android:background="@drawable/coin_bg"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:backgroundTint="@color/black"/>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/exit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/coin_bg"
+                        android:gravity="center"
+                        android:backgroundTint="@color/red_color"
+                        android:layout_marginTop="@dimen/_5sdp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/manrope"
+                            android:text="Register"
+                            android:padding="@dimen/_10sdp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_13sdp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/login_now"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/manrope"
+                        android:text="Allready have a account? Login now"
+                        android:layout_gravity="right"
+                        android:padding="@dimen/_10sdp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp" />
+
+
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
