@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_bgcolor">
+    android:background="@drawable/main_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,10 +22,28 @@
             android:weightSum="2">
 
             <RelativeLayout
+                android:layout_margin="@dimen/_3sdp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1.2">
+                android:layout_height="300dp">
 
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_view_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true">
+
+                    <include
+                        layout="@layout/ads_shimmer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+                <com.thorient.quiz.ads.native_ads.TemplateView
+                    android:id="@+id/my_template"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gnt_template_type="@layout/gnt_medium_template_view" />
             </RelativeLayout>
 
             <LinearLayout
@@ -40,11 +58,9 @@
                     android:id="@+id/progressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:progress="10"
+                    android:progress="0"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:max="10"
-                    android:min="1"
-                    android:progressTint="#0FD9D9D9"
+                    android:progressTint="#F63356"
                     android:layout_marginBottom="16dp"
                     style="?android:attr/progressBarStyleHorizontal" />
 

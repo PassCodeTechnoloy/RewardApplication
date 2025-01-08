@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_bgcolor">
+    android:background="@drawable/main_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/editText"
+                        android:id="@+id/NameText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="enter your name"
@@ -55,6 +55,7 @@
                         android:backgroundTint="@color/black"/>
 
                     <EditText
+                        android:id="@+id/EmailText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="enter your Email"
@@ -67,6 +68,7 @@
                         android:backgroundTint="@color/black"/>
 
                     <EditText
+                        android:id="@+id/MessageText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="enter your Message"
@@ -79,7 +81,7 @@
                         android:backgroundTint="@color/black"/>
 
                     <LinearLayout
-                        android:id="@+id/exit"
+                        android:id="@+id/submit_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/coin_bg"

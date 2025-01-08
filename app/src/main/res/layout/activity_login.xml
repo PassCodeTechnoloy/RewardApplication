@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_bgcolor">
+    android:background="@drawable/main_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,12 +22,29 @@
             android:weightSum="2">
 
             <RelativeLayout
+                android:layout_margin="@dimen/_3sdp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1.2">
+                android:layout_height="300dp">
 
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_view_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true">
+
+                    <include
+                        layout="@layout/ads_shimmer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+                <com.thorient.quiz.ads.native_ads.TemplateView
+                    android:id="@+id/my_template"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gnt_template_type="@layout/gnt_medium_template_view" />
             </RelativeLayout>
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -43,7 +60,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/editText"
+                        android:id="@+id/email_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email"
@@ -55,6 +72,7 @@
                         android:backgroundTint="@color/black"/>
 
                     <EditText
+                        android:id="@+id/password_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Password"
@@ -68,7 +86,7 @@
 
 
                     <LinearLayout
-                        android:id="@+id/exit"
+                        android:id="@+id/Login_click"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/coin_bg"
@@ -99,18 +117,8 @@
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_13sdp" />
-
-
-
-
-
                 </LinearLayout>
-
-
             </RelativeLayout>
         </LinearLayout>
-
     </LinearLayout>
-
-
 </RelativeLayout>

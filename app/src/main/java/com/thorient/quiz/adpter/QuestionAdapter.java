@@ -1,6 +1,9 @@
 package com.thorient.quiz.adpter;
 
+import static com.thorient.quiz.prefrence.SharedPrefsUtil.getValue;
+
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.thorient.quiz.R;
+import com.thorient.quiz.database.QuestionDao;
+import com.thorient.quiz.database.QuestionDatabase;
 import com.thorient.quiz.interfaces.OnAnswerSelectedListener;
 import com.thorient.quiz.model.Question;
 
@@ -20,16 +25,22 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
     private List<Question> questions;
     private int currentQuestionIndex = 0;
     private OnAnswerSelectedListener onAnswerSelectedListener;
+    private QuestionDao questionDao;
+    private List<QuestionDatabase> questionDatabases;
 
-    public QuestionAdapter(Context context, List<Question> questions, OnAnswerSelectedListener listener) {
+
+    public QuestionAdapter(Context context, List<Question> questions, List<QuestionDatabase> questionDao, OnAnswerSelectedListener listener) {
         this.context = context;
         this.questions = questions;
         this.onAnswerSelectedListener = listener;
+        this.questionDatabases = questionDao;
+
+
     }
 
     public void setCurrentQuestionIndex(int index) {
         this.currentQuestionIndex = index;
-        notifyDataSetChanged(); // Refresh the view to show the next question
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -51,23 +62,62 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         resetOptionStyles(holder);
         enableOptions(holder, true);
 
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedAnswer = ((TextView) v).getText().toString();
+                boolean isCorrect = selectedAnswer.equals(question.getCorrectAnswer());
 
-        // Option click listeners
-        View.OnClickListener listener = v -> {
-            String selectedAnswer = ((TextView) v).getText().toString();
-            boolean isCorrect = selectedAnswer.equals(question.getCorrectAnswer());
+//                if (getValue(context, "coin", 0) >= 200) {
+                    if (onAnswerSelectedListener != null) {
+                        onAnswerSelectedListener.onAnswerSelected(isCorrect);
+                    }
+                    if (isCorrect) {
+                        v.setBackground(context.getResources().getDrawable(R.drawable.true_ansbg));
+                        ((TextView) v).setTextColor(context.getColor(R.color.select_text_color));
+                    } else {
+                        v.setBackground(context.getResources().getDrawable(R.drawable.false_ansbg));
+                        ((TextView) v).setTextColor(context.getColor(R.color.white));
+                    }
+                    if (isCorrect) {
+                        if (position == 0) {
+                            onAnswerSelectedListener.insertData(question.getQuestion(), question.getOptionA(), question.getOptionB(), question.getOptionC(), question.getOptionD(), context.getColor(R.color.select_text_color), 0, 0, 0, question.getCorrectAnswer(), question.getCorrectAnswer());
+                        } else if (position == 1) {
+                            onAnswerSelectedListener.insertData(question.getQuestion(), question.getOptionA(), question.getOptionB(), question.getOptionC(), question.getOptionD(), 0, context.getColor(R.color.select_text_color), 0, 0, question.getCorrectAnswer(), question.getCorrectAnswer());
 
-            if (isCorrect) {
-                v.setBackground(context.getResources().getDrawable(R.drawable.true_ansbg));
-                ((TextView) v).setTextColor(context.getColor(R.color.select_text_color));
-            } else {
-                v.setBackground(context.getResources().getDrawable(R.drawable.false_ansbg));
-                ((TextView) v).setTextColor(context.getColor(R.color.white));
-            }
+                        } else if (position == 2) {
+                            onAnswerSelectedListener.insertData(question.getQuestion(), question.getOptionA(), question.getOptionB(), question.getOptionC(), question.getOptionD(), 0, 0, context.getColor(R.color.select_text_color), 0, question.getCorrectAnswer(), question.getCorrectAnswer());
 
-            // Notify the activity/fragment
-            if (onAnswerSelectedListener != null) {
-                onAnswerSelectedListener.onAnswerSelected(isCorrect);
+                        } else if (position == 3) {
+                            onAnswerSelectedListener.insertData(question.getQuestion(), question.getOptionA(), question.getOptionB(), question.getOptionC(), question.getOptionD(), 0, 0, 0, context.getColor(R.color.select_text_color), question.getCorrectAnswer(), question.getCorrectAnswer());
+
+                        }
+                    }
+                    try {
+                        if (!isCorrect) {
+                            if (position == 0) {
+                                onAnswerSelectedListener.updateDataIntrface(question.getQuestion(), question.getOptionA(), question.getOptionB(), question.getOptionC(), question.getOptionD(), context.getColor(R.color.red_color), questionDatabases.get(0).getColor1(), questionDatabases.get(0).getColor1(), questionDatabases.get(0).getColor1(), question.getCorrectAnswer(), question.getCorrectAnswer());
+
+                            } else if (position == 1) {
+                                onAnswerSelectedListener.updateDataIntrface(question.getQuestion(), question.getOptionA(), question.getOptionB(), question.getOptionC(), question.getOptionD(), questionDatabases.get(1).getColor2(), context.getColor(R.color.red_color), questionDatabases.get(1).getColor2(), questionDatabases.get(1).getColor2(), question.getCorrectAnswer(), question.getCorrectAnswer());
+
+                            } else if (position == 2) {
+                                onAnswerSelectedListener.updateDataIntrface(question.getQuestion(), question.getOptionA(), question.getOptionB(), question.getOptionC(), question.getOptionD(), questionDatabases.get(2).getColor3(), questionDatabases.get(2).getColor3(), context.getColor(R.color.red_color), questionDatabases.get(2).getColor3(), question.getCorrectAnswer(), question.getCorrectAnswer());
+
+                            } else if (position == 3) {
+                                onAnswerSelectedListener.updateDataIntrface(question.getQuestion(), question.getOptionA(), question.getOptionB(), question.getOptionC(), question.getOptionD(), questionDatabases.get(3).getColor4(), questionDatabases.get(3).getColor4(), questionDatabases.get(3).getColor4(), context.getColor(R.color.red_color), question.getCorrectAnswer(), question.getCorrectAnswer());
+
+                            }
+                        }
+                    } catch (Exception exception) {
+                        Log.e("TEST", "erroe: "+exception.getMessage() );
+                    }
+
+
+//                }
+//                else {
+////                    onAnswerSelectedListener.showRewardDialog();
+//                }
             }
         };
 
@@ -79,7 +129,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
     @Override
     public int getItemCount() {
-        return 1; // Show only one question at a time
+        return 1;
     }
 
     private void resetOptionStyles(QuestionViewHolder holder) {
@@ -100,7 +150,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         holder.optionC.setEnabled(enable);
         holder.optionD.setEnabled(enable);
     }
-
 
     public static class QuestionViewHolder extends RecyclerView.ViewHolder {
         TextView questionTextView, optionA, optionB, optionC, optionD;
